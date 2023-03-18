@@ -1,6 +1,6 @@
 #include <stdio.h>
 /**
- * main - prints all possible different combinations of two digits.
+ * main - prints the alphabetec
  *
  * Return: Always (Success)
  */
@@ -13,5 +13,5 @@ char c;
 for (c = 'a'; c <= 'z'; c++)
 putchar(c);
 putchar('\n');
-return(0);
+return (0);
 }
