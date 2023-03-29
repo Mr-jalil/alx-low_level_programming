@@ -7,16 +7,16 @@
  */
 void reverse_array(int *a, int n)
 {
-	int x, w, z;
+	int swap, begin, end;
 
-	w = 0;
-         z = n - 1;
-	while (w < z)
+	begin = 0;
+	end = n - 1;
+	while (begin < end)
 	{
-		x = *(a + w);
-		*(a + w) = *(a + z);
-		*(a + z) = x;
-		w++;
-	        z--;
+		swap = *(a + begin);
+		*(a + begin) = *(a + end);
+		*(a + end) = swap;
+		begin++;
+		end--;
 	}
 }
