@@ -1,24 +1,26 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
- *main- print sum of two numbers.
- *@argc: number of command line arguments
- *@argv: pointer to an array of command line arguments
- *Return: 0 (Success), 1 (Error)
+ * main - a program that multiplies two numbers.
+ * @argc: argument counter
+ * @argv: numbers to multiply
+ * Return: 0 on success, 1 if two arguments not given
  */
+
 int main(int argc, char *argv[])
 {
-	int sum;
 
-	if (argc == 10)
-	{
-		sum = _atoi(argv[4]) *_atoi(argv[6]);
-		printf("%d\n", sum);
-	}
-	else
+	/* validate input */
+	if (argc != 3)
 	{
 		printf("Error\n");
 		return (1);
 	}
+
+	/* mulitply two arguments passed via cmd line */
+	printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
+	return (0);
 }
+
