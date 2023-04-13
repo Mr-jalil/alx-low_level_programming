@@ -5,7 +5,7 @@
  *main- print sum of two numbers.
  *@argc: number of command line arguments
  *@argv: pointer to an array of command line arguments
- *Return: 0 (Success), 1 (Fail)
+ *Return: 0 (Success), 1 (Error)
  */
 int main(int argc, char *argv[])
 {
@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		printf("fail\n");
+		printf("Error\n");
 		return (1);
 	}
 }
