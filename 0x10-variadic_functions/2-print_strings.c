@@ -3,9 +3,9 @@
 #include "variadic_functions.h"
 
 /**
- * prints_strings - function that prints strings, followed by a new line.
- * @n: number of strings
+ * print_strings - a function that prints strings, followed by a new line.
  * @separator: delimiter
+ * @n: amount of arguments in list
  */
 
 void print_strings(const char *separator, const unsigned int n, ...)
