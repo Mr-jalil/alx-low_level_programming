@@ -1,52 +1,47 @@
 #include "main.h"
 
 /**
- * _strlen - a function that appends text at the end of a file.
- * @str: string
- * Return: length
+ * read_textfile - a function that reads a text file and
+ * prints it to the POSIX standard output.
+ * @filename: file to read from
+ * @letters: size to read
+ * Return: actual size read and printed
  */
-int _strlen(char *str)
-{
-	int len;
 
-	for (len = 0; str[len] != '\0'; len++)
-		;
-
-	return (len);
-}
-
-/**
- * create_file - creates file with permissions rw------- and writes content in
- * if file already exists, don't change permissions and just truncate it
- * @filename: name to give to new file
- * @text_content: writes this content into file
- * Return: 1 on success, -1 on error
- */
-int create_file(const char *filename, char *text_content)
+ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int fd;
-	int n_wrote;
+	ssize_t n_read, n_wrote;
+	char *buffer;
 
-	if (!filename)
-		return (-1);
+	if (filename == NULL)
+		return (0);
 
-	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0600);
+	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		return (-1);
+		return (0);
 
-	if (!text_content)
+	buffer = malloc(sizeof(char) * letters);
+	if (buffer == NULL)
+		return (0);
+
+	n_read = read(fd, buffer, letters);
+	if (n_read == -1)
 	{
+		free(buffer);
 		close(fd);
-		return (1);
+		return (0);
 	}
 
-	n_wrote = write(fd, text_content, _strlen(text_content));
-	if (n_wrote == -1 || n_wrote != _strlen(text_content))
+	n_wrote = write(STDOUT_FILENO, buffer, n_read);
+	if (n_wrote == -1)
 	{
+		free(buffer);
 		close(fd);
-		return (-1);
+		return (0);
 	}
 
 	close(fd);
-	return (1);
+	return (n_read);
+
 }
